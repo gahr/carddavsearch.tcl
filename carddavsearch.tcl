@@ -27,12 +27,12 @@ proc get_param_or_query {param msg {echo on}} {
             set stty_save [exec stty -g]
             exec stty -echo
         }
-        puts -nonewline "$msg: "
-        flush stdout
+        puts -nonewline stderr "$msg: "
+        flush stderr
         gets stdin txt
         if {[string is false -strict $echo]} {
             exec stty $stty_save
-            puts {}
+            puts stderr {}
         }
     }
     return $txt
